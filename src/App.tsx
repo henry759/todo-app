@@ -10,6 +10,7 @@ type Todo = {
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [todoText, setTodoText] = useState<string>("");
+  const [editingId, setEditingId] = useState<number | null>(null);
 
   function addTodoFunc() {
     const clearInput = todoText.trim();
@@ -51,10 +52,22 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  function editTodoFunc(id: number, e: React.ChangeEvent<HTMLInputElement>) {
+    // e.target.focus();
+    const editedText = e.target.value;
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, text: editedText };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  }
+
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-screen bg-gray-900 flex items-center justify-center">
       <div className="px-4 py-4">
-        <h1 className="text-6xl font-bold tracking-tight">
+        <h1 className="text-6xl font-bold tracking-tight text-white text-center">
           Welcome to Todo App!
         </h1>
         <div className="h-[3rem] mt-12 w-full mx-auto flex items-center justify-center  gap-x-4">
@@ -63,7 +76,7 @@ function App() {
             onChange={setTodoTextFunc}
             onKeyDown={handleKeyDown}
             value={todoText}
-            className="w-full h-full border-2 border-amber-600 outline-0 rounded-xl caret-amber-500 px-2 py-2 text-xl"
+            className="w-full h-full border-2 border-amber-600 outline-0 rounded-xl text-white caret-amber-500 px-2 py-2 text-xl shadow-xl shadow-indigo-800/20"
           />
           <button
             onClick={addTodoFunc}
@@ -83,6 +96,9 @@ function App() {
                 text={todo.text}
                 deleteTodoFunc={deleteTodoFunc}
                 toggleCompletedFunc={toggleCompletedFunc}
+                editTodoFunc={editTodoFunc}
+                setEditingId={setEditingId}
+                editingId={editingId}
               />
             ))}
           </ul>
