@@ -31,7 +31,7 @@ export default function TodoItem({
 
   return (
     <div className="relative select-none">
-      <li className="relative flex items-center justify-between h-[3rem] rounded-xl overflow-hidden bg-slate-300/40 shadow-xl shadow-slate-700/30">
+      <li className="relative flex items-center justify-between h-[3rem] rounded-xl overflow-hidden bg-slate-300/40 backdrop-blur-[5px] shadow-xl shadow-slate-700/30">
         {editingId !== id ? (
           <div
             onClick={() => toggleCompletedFunc(id)}
@@ -47,7 +47,7 @@ export default function TodoItem({
                 completed
                   ? "line-through decoration-slate-800 decoration-[4px] text-8xl"
                   : "no-underline"
-              } font-semibold text-xl text-slate-100`}
+              } font-semibold text-sm lg:text-xl xl:text-2xl text-slate-100 line-clamp-1`}
             >
               {text}
             </p>
@@ -56,7 +56,7 @@ export default function TodoItem({
           <input
             ref={inputRef}
             type="text"
-            maxLength={80}
+            maxLength={55}
             value={text}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -70,13 +70,13 @@ export default function TodoItem({
         )}
         <button
           onClick={() => setEditingId(id)}
-          className="relative z-30 h-full font-bold cursor-pointer px-7 py-2 bg-amber-500 text-white"
+          className="relative z-30 h-full font-bold cursor-pointer px-3 lg:px-5 xl:px-7 py-2 bg-amber-500 text-white text-sm lg:text-lg xl:text-xl"
         >
           Edit
         </button>
         <button
           onClick={() => deleteTodoFunc(id)}
-          className="relative z-30 h-full font-bold cursor-pointer px-7 py-2 bg-rose-500 text-white"
+          className="relative z-30 h-full font-bold cursor-pointer px-3 lg:px-5 xl:px-7 py-2 bg-rose-500 text-white text-sm lg:text-lg xl:text-xl"
         >
           Delete
         </button>

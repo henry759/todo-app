@@ -65,25 +65,28 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen bg-gray-900 flex items-center justify-center">
+    <div className="w-full h-screen bg-[url(/images/13.jpg)] bg-cover bg-center _bg-gray-900 flex items-center justify-center">
       <div className="px-4 py-4">
-        <h1 className="text-6xl font-bold tracking-tight text-white text-center">
-          Welcome to Todo App!
-        </h1>
-        <div className="h-[3rem] mt-12 w-full mx-auto flex items-center justify-center  gap-x-4">
-          <input
-            type="text"
-            onChange={setTodoTextFunc}
-            onKeyDown={handleKeyDown}
-            value={todoText}
-            className="w-full h-full border-2 border-amber-600 outline-0 rounded-xl text-white caret-amber-500 px-2 py-2 text-xl shadow-xl shadow-indigo-800/20"
-          />
-          <button
-            onClick={addTodoFunc}
-            className="h-full font-bold cursor-pointer px-7 py-2 bg-amber-500 rounded-xl text-white"
-          >
-            Add
-          </button>
+        <div className="flex flex-col items-center gap-x-12 px-4 py-4 rounded-3xl shadow-indigo-950/45 shadow-2xl border-[1px] border-rose-300 backdrop-blur-[10px]">
+          <h1 className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-tight text-white text-center">
+            Welcome to Todo App!
+          </h1>
+          <div className="h-[2rem] xl:h-[3rem] mt-12 w-full mx-auto flex items-center justify-center  gap-x-4">
+            <input
+              type="text"
+              maxLength={55}
+              onChange={setTodoTextFunc}
+              onKeyDown={handleKeyDown}
+              value={todoText}
+              className="w-full h-full outline-0 bg-slate-600/50 rounded-xl text-white caret-amber-500 px-3 py-2 text-xl shadow-xl shadow-indigo-950/40"
+            />
+            <button
+              onClick={addTodoFunc}
+              className="h-full font-bold text-sm lg:text-xl cursor-pointer px-7 py-2 bg-amber-500 rounded-xl text-white"
+            >
+              Add
+            </button>
+          </div>
         </div>
         {/* container */}
         <div className="mt-12">
